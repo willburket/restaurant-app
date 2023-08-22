@@ -1,0 +1,28 @@
+org: willburket
+app: ticket-finder
+service: ticket-finder
+frameworkVersion: '3'
+	
+plugins:
+  - serverless-offline
+
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  api:
+    handler: index.handler
+    events:
+      - httpApi:
+          path: /
+          method: get
+
+  hello:
+    handler: handlers/hello.handler
+    events:
+      - httpApi:
+          path: /hello
+          method: get
+
