@@ -6,7 +6,7 @@ function Head() {
 
     return(
         <div className="bg-indigo-500 h-16 w-full p-3">
-            <h1 className="text-3xl font-bold text-white">Restaraunt Generator</h1>
+            <h1 className="text-3xl font-bold text-white">Food Finder</h1>
         </div>
     )
 };
