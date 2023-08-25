@@ -8,7 +8,7 @@ function PriceDropdown() {
     }
 
     return (
-        <div className="relative w-32">
+        <div className="relative w-32 px-2">
             <select value = {selected} onChange = {handleSelectChange} 
             className="w-full p-2.5 text-gray-500 bg-white border rounded-md shadow-sm 
             outline-none appearance-none focus:border-indigo-600">
