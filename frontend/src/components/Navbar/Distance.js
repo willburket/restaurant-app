@@ -1,34 +1,33 @@
 import React, {useState} from "react";
 import Select from "react-select";
-import { getCurrentLocation } from "../../utils/locateUtil";
 
-function LocationDropdown() {
+function DistanceDropdown() {
     const [selected, setSelected] = useState("")
-    const [location, setLocation] = useState(null)
 
     const options = [
-        {value: "current", label: "Current Location"},
+        {value: "0.25", label: "0.25 Miles"},
+        {value: "0.5", label: "0.5 Miles"},
+        {value: "1", label: "1 Mile"},
+        {value: "5", label: "5 Miles"},
+        {value: "10", label: "10 Miles"},
+        {value: "25", label: "25 Miles"},
+        {value: "50", label: "50 Miles"},
     ]
 
     const customStyles = {
         control: (provided) => ({
           ...provided,
-          minHeight: '40px', 
-          width: '200px',
+          minHeight: '40px', // Change the minimum height to 40px
+          width: '175px',
         }),
         dropdownIndicator: (provided) => ({
           ...provided,
           padding: '8px', // Adjust padding for indicator to match the height
         }),
-    }
+      };
 
-    const handleSelectChange = async (target) => {
+    const handleSelectChange = (target) => {
         setSelected(target)
-        if(target.value === 'current'){
-            const currentLocation = await getCurrentLocation()
-            setLocation(currentLocation)
-            console.log(location)
-        }
     }
 
     return (
@@ -37,11 +36,11 @@ function LocationDropdown() {
             options = {options}
             value = {selected}
             onChange= {handleSelectChange}
-            placeholder = "Location"
+            placeholder = "Max Distance"
             styles={customStyles}/>
         </div>
     )
 }
 
 
-export default LocationDropdown
+export default DistanceDropdown;

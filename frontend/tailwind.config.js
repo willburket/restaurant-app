@@ -22,7 +22,7 @@ module.exports = {
     },
     extend: {
       colors:{
-        primary: "#ff4800",
+        primary: "#ff4800",   // change 
       },
     },
   },
