@@ -1,8 +1,12 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Select from "react-select";
 
-function PriceDropdown() {
+function PriceDropdown({handleCallback}) {
     const [selected, setSelected] = useState("")
+
+    useEffect(() =>{
+      handleCallback(selected)
+    }, [selected])
 
     const options = [
         {value: "1", label: "$"},

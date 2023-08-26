@@ -1,8 +1,12 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Select from "react-select";
 
-function DistanceDropdown() {
+function DistanceDropdown({handleCallback}) {
     const [selected, setSelected] = useState("")
+
+    useEffect(() =>{
+        handleCallback(selected)
+    }, [selected])
 
     const options = [
         {value: "0.25", label: "0.25 Miles"},

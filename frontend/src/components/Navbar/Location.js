@@ -1,14 +1,18 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Select from "react-select";
 import { getCurrentLocation } from "../../utils/locateUtil";
 
-function LocationDropdown() {
+function LocationDropdown({handleCallback}) {
     const [selected, setSelected] = useState("")
     const [location, setLocation] = useState(null)
 
     const options = [
         {value: "current", label: "Current Location"},
     ]
+
+    useEffect(() =>{
+        handleCallback(location);
+    }, [location])
 
     const customStyles = {
         control: (provided) => ({
@@ -27,7 +31,6 @@ function LocationDropdown() {
         if(target.value === 'current'){
             const currentLocation = await getCurrentLocation()
             setLocation(currentLocation)
-            console.log(location)
         }
     }
 

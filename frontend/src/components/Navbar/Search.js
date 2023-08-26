@@ -1,6 +1,13 @@
-import React from "react";
+import React, {useState, usEffect} from "react";
 
-function SearchBar() {
+function SearchBar({handleCallback}) {
+    const [search, setSearch] = useState('')
+
+    const handleInputChange = (event) =>{
+        const newText = event.target.value;
+        setSearch(newText)
+        handleCallback(search)
+    }
     return (
         <div className="flex items-center px-1">
             <div className="flex rounded h-10">
@@ -10,6 +17,8 @@ function SearchBar() {
                      focus:border-purple-400 focus:ring-purple-300 focus:outline-none 
                     focus:ring focus:ring-opacity-40"
                     placeholder="Type of food..."
+                    onChange = {handleInputChange}
+                    value={search}
                 />
             </div>
         </div>
