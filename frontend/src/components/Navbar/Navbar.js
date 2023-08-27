@@ -3,7 +3,7 @@ import { PriceDropdown } from "./Price";
 import { SearchBar, SearchButton } from "./Search";
 import LocationDropdown from "./Location";
 import DistanceDropdown from "./Distance";
-import { fetchPlaces } from "../../utils/placesUtil";
+import { fetchPlaces, getRandomItem } from "../../utils/placesUtil";
 
 
 function Navbar() {
@@ -16,13 +16,22 @@ function Navbar() {
         console.log(location)
     }, [location])
 
-    const search = () => {
+    const search = async () => {
+        // if session storage has something in it and food, price, location, and distance dont match then clear
+        // if session storage has something in it and food, price, location, and distance match then pull out of session
+            // storage and pop
+        // if session storage is empty then send request to google
         if (food && price && location && distance){
             const lat = location.lat;
             const lon = location.lon;
-            fetchPlaces(food,price,lat,lon,distance);
+            const places = await fetchPlaces(food,price,lat,lon,distance);
+            console.log(places)
+            const item = getRandomItem(places)
+            console.log(item)
+            // pop item out 
+            // set cache
         } else{
-            console.log("not set")
+            console.log("not set")      // alert? or just do nothing?
         }
     }
 
