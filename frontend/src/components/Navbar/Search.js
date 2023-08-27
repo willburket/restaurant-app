@@ -1,4 +1,4 @@
-import React, {useState, usEffect} from "react";
+import React, {useState} from "react";
 
 function SearchBar({handleCallback}) {
     const [search, setSearch] = useState('')
@@ -25,10 +25,12 @@ function SearchBar({handleCallback}) {
     );
 }
 
-function SearchButton(){
+function SearchButton(props){
+    const onClick = props.onClick;
+
     return(
         <div className="p-1">
-            <button className=" text-white bg-purple-600 border-l rounded px-2 h-10">
+            <button onClick = {onClick} className=" text-white bg-purple-600 border-l rounded px-2 h-10">
                 Search
             </button>
         </div>

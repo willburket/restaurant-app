@@ -9,13 +9,13 @@ function DistanceDropdown({handleCallback}) {
     }, [selected])
 
     const options = [
-        {value: "0.25", label: "0.25 Miles"},
-        {value: "0.5", label: "0.5 Miles"},
-        {value: "1", label: "1 Mile"},
-        {value: "5", label: "5 Miles"},
-        {value: "10", label: "10 Miles"},
-        {value: "25", label: "25 Miles"},
-        {value: "50", label: "50 Miles"},
+        {value: 402.336, label: "0.25 Miles"},
+        {value: 804.672, label: "0.5 Miles"},
+        {value: 1609.34, label: "1 Mile"},
+        {value: 8046.72, label: "5 Miles"},
+        {value: 16093.4, label: "10 Miles"},
+        {value: 40233.6, label: "25 Miles"},
+        {value: 80467.2, label: "50 Miles"},
     ]
 
     const customStyles = {

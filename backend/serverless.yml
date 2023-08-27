@@ -12,11 +12,11 @@ provider:
   runtime: nodejs18.x
 
 functions:
-  api:
-    handler: index.handler
+  key:
+    handler: handlers/key.handler
     events:
       - httpApi:
-          path: /
+          path: /key
           method: get
 
   hello:
