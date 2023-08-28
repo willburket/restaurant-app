@@ -44,5 +44,6 @@ export const loadMap = () =>{
 
 export const getRandomItem = (array) => {
     const randomIndex = Math.floor(Math.random() * array.length)
-    return array[randomIndex]
+    const item = array.splice(randomIndex,1)[0]
+    return item
 }
