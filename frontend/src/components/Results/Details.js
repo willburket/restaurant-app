@@ -5,11 +5,11 @@ function Details(props){
     if(place){
         return(
             <div className="top-32 w-full">
-                {place.name}
-                {place.icon}
-                {place.rating}
-                {place.user_ratings_total}
-                {place.vicinity}
+                {place.name} <br/>
+                <img src = {place.icon} key = {place.name}/>
+                Rating: {place.rating} <br/>
+                Rating Count: {place.user_ratings_total} <br/>
+                Address: {place.vicinity} <br/>
             </div>
         )
     }

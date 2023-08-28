@@ -13,8 +13,6 @@ function App() {
   },[])
 
   const searchCallback = (data) =>{
-    console.log("app callback")
-    console.log(data)
     setRestaurant(data)
   }
 
