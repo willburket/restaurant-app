@@ -38,6 +38,7 @@ function Navbar({handleCallback}) {
             const distanceString = distance.toString();
             const identifier = `${food}-${priceString}-${latString}-${lonString}-${distanceString}`;
             const storedValue = sessionStorage.getItem(identifier);
+            // const storedArray = JSON.parse(storedValue);
 
             if (sessionStorage.length === 0 || storedValue === null){
                 const places = await fetchPlaces(food,price,lat,lon,distance);
@@ -52,7 +53,7 @@ function Navbar({handleCallback}) {
                 }    
                               
             } 
-            else if (storedValue !== null){
+            else if (storedValue !== null && storedValue !== []){
                 const item = getFromCache(identifier)
                 setResult(item)
             }

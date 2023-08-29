@@ -12,7 +12,9 @@ function App() {
     loadMap()
   },[])
 
-
+  useEffect(() => {
+    console.log(restaurant)
+  },[restaurant])
 
   const searchCallback = (data) =>{
       setRestaurant(data)
