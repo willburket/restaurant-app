@@ -19,7 +19,11 @@ export const fetchPlaces = async (food,price,lat,lon,distance) => {
         service.nearbySearch(request, (results, status) => {
             if (status === window.google.maps.places.PlacesServiceStatus.OK) {
                 resolve(results);
-            } else {
+            }
+            else if (status === window.google.maps.places.PlacesServiceStatus.ZERO_RESULTS){
+                resolve("no results");
+            }
+            else {
                 reject(status)
                 console.error('Nearby search request failed:', status);
             }

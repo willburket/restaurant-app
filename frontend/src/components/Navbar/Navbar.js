@@ -16,6 +16,7 @@ function Navbar({handleCallback}) {
 
     useEffect(() =>{
         console.log(location)           // need to add loader or something while we're waiting on location
+        
     }, [location])
 
     useEffect(() =>{
@@ -24,7 +25,10 @@ function Navbar({handleCallback}) {
 
     const search = async () => {
         // what to do when session storage has run out 
-        // what to do when google returns NO PLACES 
+            // if there's another page - fetch next page
+                // find "next page token" to fetch another set of 20 
+            // if there's no more options - put message on the screen
+                
         if (food && price && location && distance){
             const lat = location.lat;
             const lon = location.lon;
@@ -38,9 +42,15 @@ function Navbar({handleCallback}) {
             if (sessionStorage.length === 0 || storedValue === null){
                 const places = await fetchPlaces(food,price,lat,lon,distance);
                 console.log(places)
-                const item = getRandomItem(places)
-                setResult(item)
-                storeInCache(identifier,places)
+                if(places !== "no results"){
+                    const item = getRandomItem(places)
+                    storeInCache(identifier,places)
+                    setResult(item) 
+                }
+                else{
+                    setResult("no results")
+                }    
+                              
             } 
             else if (storedValue !== null){
                 const item = getFromCache(identifier)

@@ -7,13 +7,15 @@ import Details from "./components/Results/Details";
 function App() {
 
   const [restaurant, setRestaurant] = useState(null)
-
+  
   useEffect(() => {
     loadMap()
   },[])
 
+
+
   const searchCallback = (data) =>{
-    setRestaurant(data)
+      setRestaurant(data)
   }
 
 
@@ -21,7 +23,7 @@ function App() {
     <div className="App">
       <Head/>
       <Navbar handleCallback = {searchCallback}/>
-      <Details item = {restaurant}/>
+      <Details item = {restaurant} />
     </div>
   );
 }
