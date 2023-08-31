@@ -5,25 +5,25 @@ function Details(props){
 
     if(place && place !== "no more results" && place !== "no results"){
         return(
-            <div className="top-32 w-full">
-                {place.name} <br/>
+            <div className="top-32 w-1/4 h-screen">
+                <h2 className="text-3xl font-bold">{place.name}</h2><br/>
                 <img src = {place.icon} key = {place.name}/>
-                Rating: {place.rating} <br/>
-                Rating Count: {place.user_ratings_total} <br/>
-                Address: {place.vicinity} <br/>
+                <h2 className = "text-xl font-bold">Rating:</h2>{place.rating}<br/>
+                <h2 className = "text-xl font-bold">Rating Count:</h2>{place.user_ratings_total}<br/>
+                <h2 className = "text-xl font-bold">Address:</h2> {place.vicinity}<br/>
             </div>
         )
     }
     else if (place === "no results"){
         return(
-            <div className="top-32 w-full">
+            <div className="top-32 w-1/4 h-full">
                 No results found 
             </div>
         )
     }
     else if (place === undefined){
         return(
-            <div className="top-32 w-full">
+            <div className="top-32 w-1/4 h-full">
                 No more results
             </div>
         )

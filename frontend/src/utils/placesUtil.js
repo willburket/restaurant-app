@@ -31,7 +31,7 @@ export const fetchPlaces = async (food,price,lat,lon,distance) => {
     })
 }
 
-export const loadMap = () =>{
+export const loadGoogle = () =>{
     if(window.google){
         return;
     }
@@ -50,4 +50,15 @@ export const getRandomItem = (array) => {
     const randomIndex = Math.floor(Math.random() * array.length)
     const item = array.splice(randomIndex,1)[0]
     return item
+}
+
+export const initMap = (lat,lon) => {
+    let place = new window.google.maps.LatLng(lat,lon);
+
+    let infowindow = new window.google.maps.InfoWindow();
+  
+    let map = new window.google.maps.Map(
+        document.getElementById('map'), {center: place, zoom: 15});
+    
+    let service = new window.google.maps.places.PlacesService(map);
 }

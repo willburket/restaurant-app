@@ -7,7 +7,7 @@ import { fetchPlaces, getRandomItem } from "../../utils/placesUtil";
 import { storeInCache,getFromCache } from "../../utils/cacheUtil";
 
 
-function Navbar({handleCallback}) {
+function Navbar({handleCallback, locateChange}) {
     const [food, setFood] = useState(null)
     const [price, setPrice] = useState(null)
     const [location, setLocation] = useState(null)
@@ -16,6 +16,7 @@ function Navbar({handleCallback}) {
 
     useEffect(() =>{
         console.log(location)           // need to add loader or something while we're waiting on location
+        locateChange(location)
         
     }, [location])
 
