@@ -53,8 +53,14 @@ export const getRandomItem = (array) => {
 }
 
 export const initMap = (lat,lon,restaurant) => {
-    let place = new window.google.maps.LatLng(lat,lon);
-
+    // current location
+    const place = new window.google.maps.LatLng(lat,lon);
+    const current = "You"
+    // restaurant location
+    const restLat = restaurant.geometry.location.lat();
+    const restLon = restaurant.geometry.location.lng();
+    const restPlace = new window.google.maps.LatLng(restLat,restLon);
+    const name = restaurant.name;
 
     let infowindow = new window.google.maps.InfoWindow();
   
@@ -62,15 +68,35 @@ export const initMap = (lat,lon,restaurant) => {
         document.getElementById('map'), {center: place, zoom: 15});
     
     let service = new window.google.maps.places.PlacesService(map);
-    return map;
-}
-
-export const createMarker = (map,lat,lon,title) => {
-    let place = new window.google.maps.LatLng(lat,lon);
-
-    const marker = new window.google.maps.Marker({
+    // add current marker 
+    const currentMarker = new window.google.maps.Marker({
         position: place,
         map,
-        title: title,
+        title: current,
     });
+    // add restaurant marker
+    const restaurantMarker = new window.google.maps.Marker({
+        position: restPlace,
+        map,
+        title: name,
+    });
+
+    const bounds = new window.google.maps.LatLngBounds();
+
+    bounds.extend(currentMarker.getPosition());
+    bounds.extend(restaurantMarker.getPosition());
+
+    map.fitBounds(bounds);
+   
+    // return map;
 }
+
+// export const createMarker = (map,lat,lon,title) => {
+//     let place = new window.google.maps.LatLng(lat,lon);
+
+//     const marker = new window.google.maps.Marker({
+//         position: place,
+//         map,
+//         title: title,
+//     });
+// }

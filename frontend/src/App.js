@@ -9,6 +9,7 @@ function App() {
   const [restaurant, setRestaurant] = useState(null)
   const [location, setLocation] = useState(null)
   
+  
   useEffect(() => {
     loadGoogle()
   },[])
@@ -19,6 +20,7 @@ function App() {
   const locationCallback = (data) =>{
     setLocation(data)
   }
+
 
   return (
     <div className="App">
