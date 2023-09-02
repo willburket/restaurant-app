@@ -10,7 +10,8 @@ function Map (props){
             const lat = location.lat
             const lon = location.lon
     
-        initMap(lat,lon,restaurant)        // shouldn't need to init every time, just update pin
+        initMap(lat,lon,restaurant)        // shouldn't need to init every time, just update pin?
+        // clear map if no results
         }
     }, [restaurant])
 

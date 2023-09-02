@@ -57,8 +57,8 @@ export const initMap = (lat,lon,restaurant) => {
     const place = new window.google.maps.LatLng(lat,lon);
     const current = "You"
     // restaurant location
-    const restLat = restaurant.geometry.location.lat();
-    const restLon = restaurant.geometry.location.lng();
+    const restLat = restaurant.geometry.location.lat;       // only works when data is cached and lat/lng become properties
+    const restLon = restaurant.geometry.location.lng;
     const restPlace = new window.google.maps.LatLng(restLat,restLon);
     const name = restaurant.name;
 

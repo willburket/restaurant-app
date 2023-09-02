@@ -45,8 +45,8 @@ function Navbar({handleCallback, locateChange}) {
                 const places = await fetchPlaces(food,price,lat,lon,distance);
                 console.log(places)
                 if(places !== "no results"){
-                    const item = getRandomItem(places)
                     storeInCache(identifier,places)
+                    const item = getFromCache(identifier)
                     setResult(item) 
                 }
                 else{
