@@ -52,13 +52,28 @@ export const getRandomItem = (array) => {
     return item
 }
 
-export const initMap = (lat,lon) => {
+export const initMap = (lat,lon,restaurant) => {
     let place = new window.google.maps.LatLng(lat,lon);
+
 
     let infowindow = new window.google.maps.InfoWindow();
   
     let map = new window.google.maps.Map(
         document.getElementById('map'), {center: place, zoom: 15});
+
+    new window.google.maps.Marker({          // make a marker at your current location
+        position: place,
+        map,
+        title: "You",
+    });
     
     let service = new window.google.maps.places.PlacesService(map);
+}
+
+export const createMarker = (map,lat,lon,title) => {
+    const marker = new window.google.maps.Marker({
+        position: {lat: lat, lon: lon},
+        map,
+        title: title,
+    });
 }
