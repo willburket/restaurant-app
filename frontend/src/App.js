@@ -1,32 +1,17 @@
 import Head from "./components/Head/Head";
-import Navbar from "./components/Navbar/Navbar";
-import { useEffect, useState } from "react";
-import { loadGoogle } from "./utils/placesUtil";
-import Results from "./components/Results/Results";
+import { Route, Routes } from "react-router-dom"; 
+import Home from "./pages/Home";
 
 function App() {
-
-  const [restaurant, setRestaurant] = useState(null)
-  const [location, setLocation] = useState(null)
-  
-  
-  useEffect(() => {
-    loadGoogle()
-  },[])
-
-  const searchCallback = (data) =>{
-    setRestaurant(data)
-  }
-  const locationCallback = (data) =>{
-    setLocation(data)
-  }
 
 
   return (
     <div className="App">
       <Head/>
-      <Navbar handleCallback = {searchCallback} locateChange={locationCallback}/>
-      <Results location = {location} restaurant = {restaurant}/>
+      <Routes>
+        <Route path ='/' element = {<Home/>}/>
+        {/* <Route path ='/account' element = {<Account/>}/> */}
+      </Routes>
     </div>
   );
 }

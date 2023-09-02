@@ -8,6 +8,12 @@ function SearchBar({handleCallback}) {
         setSearch(newText)
         handleCallback(search)
     }
+    const handlePaste = (event) =>{
+        event.preventDefault();
+        const pastedText = event.clipboardData.getData('text/plain');
+        setSearch(pastedText)
+    }
+
     return (
         <div className="flex items-center px-1">
             <div className="flex rounded h-10">
@@ -19,6 +25,7 @@ function SearchBar({handleCallback}) {
                     placeholder="Type of food..."
                     onChange = {handleInputChange}
                     value={search}
+                    onPaste={handlePaste}
                 />
             </div>
         </div>
