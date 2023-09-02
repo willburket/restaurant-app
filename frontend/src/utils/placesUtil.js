@@ -60,19 +60,16 @@ export const initMap = (lat,lon,restaurant) => {
   
     let map = new window.google.maps.Map(
         document.getElementById('map'), {center: place, zoom: 15});
-
-    new window.google.maps.Marker({          // make a marker at your current location
-        position: place,
-        map,
-        title: "You",
-    });
     
     let service = new window.google.maps.places.PlacesService(map);
+    return map;
 }
 
 export const createMarker = (map,lat,lon,title) => {
+    let place = new window.google.maps.LatLng(lat,lon);
+
     const marker = new window.google.maps.Marker({
-        position: {lat: lat, lon: lon},
+        position: place,
         map,
         title: title,
     });
