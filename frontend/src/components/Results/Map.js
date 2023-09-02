@@ -6,7 +6,7 @@ function Map (props){
     const restaurant = props.restaurant;
 
     useEffect(() => {
-        if(location && restaurant){
+        if(location && restaurant !== undefined && restaurant !== "no results"){
             const lat = location.lat
             const lon = location.lon
     
