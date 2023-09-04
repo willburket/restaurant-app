@@ -80,7 +80,7 @@ function Navbar({handleCallback, locateChange}) {
     }
 
     return(
-        <div className="bg-indigo-500 h-16 w-full top-16 p-2 flex">
+        <div className="bg-gray-600 h-16 w-full top-16 p-2 flex">
             <SearchBar handleCallback = {searchCallback}/>
             <LocationDropdown handleCallback = {locationCallback}/>
             <DistanceDropdown handleCallback = {distanceCallback}/>

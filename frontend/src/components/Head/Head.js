@@ -9,7 +9,7 @@ function Head() {
     // account button only shows when signed in?
 
     return(
-        <div className="bg-indigo-500 h-16 w-full p-3 flex">
+        <div className="bg-gray-600 h-16 w-full p-3 flex">
             <Logo/>
             <h1 className="text-5xl font-bold text-white px-3">Food Finder</h1>
             <div className="flex items-center ml-auto">

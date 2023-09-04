@@ -22,8 +22,18 @@ function LocationDropdown({handleCallback}) {
         }),
         dropdownIndicator: (provided) => ({
           ...provided,
-          padding: '8px', // Adjust padding for indicator to match the height
+          padding: '8px', 
+          color: '#7e22ce',
         }),
+        option: (provided, state) => ({
+            ...provided,
+            backgroundColor: state.isFocused ? '#c084fc' : 'white', // Change the background color on hover
+            color: state.isFocused ? 'white' : 'black', // Change the text color on hover
+          }),
+          menu: (provided) => ({
+            ...provided,
+            borderColor: '#7e22ce', // Change the border color when the dropdown is open
+          }),
     }
 
     const handleSelectChange = async (target) => {
