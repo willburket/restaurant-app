@@ -19,6 +19,7 @@ function Map (props){
     return(
         <div className="h-96 w-96" id= "map">
         </div>
+        
     )
     
 }

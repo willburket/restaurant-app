@@ -5,7 +5,7 @@ function Details(props){
 
     if(place && place !== "no more results" && place !== "no results"){
         return(
-            <div className="top-32 w-1/4 h-screen">
+            <div className="top-32 w-1/3 h-full">
                 <h2 className="text-3xl font-bold">{place.name}</h2><br/>
                 <img src = {place.icon} key = {place.name}/>
                 <h2 className = "text-xl font-bold">Rating:</h2>{place.rating}<br/>
@@ -16,14 +16,14 @@ function Details(props){
     }
     else if (place === "no results"){
         return(
-            <div className="top-32 w-1/4 h-full">
+            <div className="top-32 w-1/3 h-full">
                 No results found 
             </div>
         )
     }
     else if (place === undefined){
         return(
-            <div className="top-32 w-1/4 h-full">
+            <div className="top-32 w-1/3 h-full">
                 No more results
             </div>
         )

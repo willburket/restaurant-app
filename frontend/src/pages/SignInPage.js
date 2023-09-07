@@ -5,7 +5,7 @@ import Nav from "../components/SignIn/Nav";
 function SignInPage(){
     return(
         <div>
-            {/* <Nav/> */}
+            <Nav/>
             <SignIn/>
             
         </div>
