@@ -1,12 +1,12 @@
 import React from "react";
 import Nav from "../components/SignIn/Nav";
-import SignUp from "../components/SignUp/SignUp";
+import SignUpForm from "../components/SignUp/SignUpForm";
 
 function SignUpPage(){
     return(
         <div>
             <Nav/>
-            <SignUp/>
+            <SignUpForm/>
         </div>
     )
 }

@@ -18,3 +18,10 @@ functions:
       - httpApi:
           path: /key
           method: get
+
+  signup:
+    handler: handlers/signUp.handler
+    events:
+      - httpApi:
+          path: /signup
+          method: post

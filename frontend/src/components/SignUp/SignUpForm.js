@@ -1,31 +1,48 @@
 import React, {useState} from "react";
-import SignUpButton from "./SignUpButton";
 
-function SignUp(){
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+function SignUpForm(){
+    const [formData,setFormData] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+    });
 
-    const handleEmailChange = (event) =>{
-        const newText = event.target.value;    
-        setEmail(newText);
+    const handleInputChange = (e) =>{
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
     }
-    const handlePasswordChange = (event) =>{
-        const newText = event.target.value;    
-        setPassword(newText);
-    }
-    const handleFirstNameChange = (event) =>{
-        const newText = event.target.value;    
-        setFirstName(newText);
-    }
-    const handleLastNameChange = (event) =>{
-        const newText = event.target.value;    
-        setLastName(newText);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try{
+            const response = await fetch('http://localhost:3000/signup',{      // change on deployment & commits
+                method: 'POST', 
+                header: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            
+            if(response.ok){
+                console.log('Data sent successfully')
+            }else{
+                console.log('error sending data')
+            }
+
+        }catch(error){
+            console.log(error)
+        }
+
     }
 
-    return(
-        <div className="flex top-32 w-full h-full justify-center">
+        
+    
+
+return(
+    <div className="flex top-32 w-full h-full justify-center">
         <div className="flex mt-36 flex-col h-96 w-1/3 justify-center p-2 
         items-center border border-purple-700 rounded-xl">
             <div>
@@ -36,50 +53,56 @@ function SignUp(){
                     Already have an account? <a href= "login" className="font-bold text-purple-700">Sign In</a>
                 </h4>
             </div>
-            <form className="w-96 justify-center items-center h-fit">
+            <form className="w-96 justify-center items-center h-fit"
+                onSubmit={handleSubmit}>
                 <div className="flex">
                 <input
                     type="text"
+                    name="firstName"
                     className="block w-44 px-4 py-2 bg-white border rounded-md
                         focus:border-blue-400 focus:outline-none focus:ring focus:ring-opacity-40
                         mx-2"
                     placeholder="First Name"
-                    onChange = {handleFirstNameChange}
-                    value={firstName}
+                    onChange = {handleInputChange}
+                    value={formData.firstName}
                     />
                 <input
                     type="text"
+                    name="lastName"
                     className="block w-44 px-4 py-2 bg-white border rounded-md
                         focus:border-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Last Name"
-                    onChange = {handleLastNameChange}
-                    value={lastName}
+                    onChange = {handleInputChange}
+                    value={formData.lastName}
                     />
                 </div>
                 
                  <input
                     type="text"
+                    name="email"
                     className="block w-full px-4 py-2 bg-white border rounded-md
                         focus:border-blue-400 focus:outline-none focus:ring focus:ring-opacity-40
                         my-2"
                     placeholder="Email"
-                    onChange = {handleEmailChange}
-                    value={email}
+                    onChange = {handleInputChange}
+                    value={formData.email}
                     />
                 <input
                     type="text"
+                    name="password"
                     className="block w-full px-4 py-2 bg-white border rounded-md
                         focus:border-blue-400 focus:outline-none focus:ring focus:ring-opacity-40
                         my-2"
                     placeholder="Password"
-                    onChange = {handlePasswordChange}
-                    value={password}
+                    onChange = {handleInputChange}
+                    value={formData.password}
                     />
+            <button type="submit" className=" text-white bg-purple-700 border-l rounded p-2 h-10">Sign Up</button>
             </form>
-            <SignUpButton/>
+            
         </div>
     </div>
-    )
+)
 }
 
-export default SignUp;
+export default SignUpForm;

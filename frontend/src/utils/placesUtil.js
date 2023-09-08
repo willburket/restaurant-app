@@ -35,7 +35,7 @@ export const loadGoogle = () =>{
     if(window.google){
         return;
     }
-    fetch('http://localhost:3000/key')      // change this
+    fetch('http://localhost:3000/key')      // change this when deploying & change back when committing 
   .then(response => response.json())
   .then(data => {
     const apiKey = data.message.apiKey;
