@@ -28,7 +28,7 @@ function SignInForm(){
             if(response.ok){
                 setSubmitted(true)          // change view when we've created an account 
             }else{
-                console.log('error sending data')
+                console.log(response)
             }
 
         }catch(error){

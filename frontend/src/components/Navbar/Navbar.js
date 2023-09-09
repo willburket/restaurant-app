@@ -11,7 +11,7 @@ function Navbar({handleCallback, locateChange}) {
     const [food, setFood] = useState(null)
     const [price, setPrice] = useState(null)
     const [location, setLocation] = useState(null)
-    const [distance, setDistance] = useState(null)
+    const [distance, setDistance] = useState(null)          // implement state as an object like signin form
     const [result, setResult] = useState(null)
 
     useEffect(() =>{

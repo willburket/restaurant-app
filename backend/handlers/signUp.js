@@ -5,6 +5,13 @@ module.exports.handler = async (event) => {
     const requestBody = JSON.parse(event.body);
     try{
         console.log(requestBody)
+        const password = requestBody.password
+        const saltRounds = 10
+
+        bcrypt.hash(password, saltRounds, function(err, hash) {
+            // Store hash in your password DB.
+        });
+
         const response = {
             statusCode: 200,
             headers:{
