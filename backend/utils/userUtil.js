@@ -1,5 +1,6 @@
 require('dotenv').config();
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const knex = require("knex")({
     client: 'mysql',
@@ -15,8 +16,9 @@ const knex = require("knex")({
 
 exports.saveUser = async (user) =>{
 
-    const password = user.password
-    const saltRounds = 10
+    const password = user.password;
+    const saltRounds = 10;
+    const secretKey = process.env.SECRET_KEY;
 
     try{
         const hash = await bcrypt.hash(password,saltRounds);
@@ -26,14 +28,13 @@ exports.saveUser = async (user) =>{
             email: user.email,
             password_hash: hash,
         }
-        console.log(hash)
         
-        await knex(process.env.USER_TABLE).insert(dbUser);
-        const res = await knex(process.env.USER_TABLE).select();
-        console.log(res);
-
+        const userId = await knex(process.env.USER_TABLE).insert(dbUser)
+        const payload = { userId: userId, username: user.email };
+        const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
+        return token 
     }catch(error){
         console.log(error);
-        // check for duplicate entry error 
+        return     
     }
 }

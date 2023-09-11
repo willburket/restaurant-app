@@ -19,19 +19,18 @@ function SignUpForm(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            const response = await fetch('http://localhost:3000/signup',{      // change on deployment & commits
+            await fetch('http://localhost:3000/signup',{      // change on deployment & commits
                 method: 'POST', 
                 header: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(formData),
+            }).then(response => response.json())
+            .then(data => {
+              console.log(data)
+              setSubmitted(true)
+              // save jwt (data) to cookie or local storage
             });
-            
-            if(response.ok){
-                setSubmitted(true)          // change view when we've created an account 
-            }else{
-                console.log('error sending data')
-            }
 
         }catch(error){
             console.log(error)
