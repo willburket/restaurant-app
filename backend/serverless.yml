@@ -30,3 +30,9 @@ functions:
       - httpApi:
           path: /auth
           method: post
+  saved:
+    handler: handlers/saved.handler
+    events:
+      - httpApi:
+          path: /saved
+          method: get

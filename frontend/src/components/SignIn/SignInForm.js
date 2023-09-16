@@ -24,9 +24,14 @@ function SignInForm(){
                 },
                 body: JSON.stringify(formData),
             });
-            
+            const jwt = await response.json()
+            document.cookie = `jwt=${jwt}; path=/; HttpOnly;`;      // doesn't seem to be working
+
+            console.log("Response body:",jwt)
+         
             if(response.ok){
                 setSubmitted(true)          // change view when we've created an account 
+
             }else{
                 console.log(response)
             }

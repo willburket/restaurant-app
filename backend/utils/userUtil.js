@@ -43,7 +43,6 @@ exports.checkUser = async (user) =>{
         const res = await knex(process.env.USER_TABLE).select('id','email','password_hash').where('email', user.email);
         
         const match = await bcrypt.compare(user.password, res[0].password_hash);
-
         if(!match) {
             // password incorrect
             return 
@@ -54,10 +53,8 @@ exports.checkUser = async (user) =>{
         // knex destroy?
         return token   
            
-        
-
     }catch(error){
-        console.log('Error fetching user:',error)
+        console.log('Error checking user:',error)
     }
 }
 
