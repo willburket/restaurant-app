@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 function SignInForm(){
+    const {login} = useAuth();
+
     const [formData,setFormData] = useState({
         email: "",
         password: "",
@@ -25,9 +29,7 @@ function SignInForm(){
                 body: JSON.stringify(formData),
             });
             const jwt = await response.json()
-            document.cookie = `jwt=${jwt}; path=/; HttpOnly;`;      // doesn't seem to be working
-
-            console.log("Response body:",jwt)
+            login(jwt);
          
             if(response.ok){
                 setSubmitted(true)          // change view when we've created an account 
@@ -54,7 +56,7 @@ return(
                     Sign In
                 </h3>
                 <h4 className="text-lg">
-                    New? <a href= "signup" className="font-bold text-purple-700">Sign Up</a>
+                    New? <Link to = "/signup" className="font-bold text-purple-700" >Sign Up</Link>               
                 </h4>
             </div>
             <form className="w-96 justify-center items-center h-fit"

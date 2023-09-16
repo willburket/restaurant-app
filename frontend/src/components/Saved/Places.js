@@ -1,12 +1,16 @@
 import React,{ useEffect } from "react";
-import { fetchSavedPlaces, getCookie } from "../../utils/userUtil";
+import { fetchSavedPlaces } from "../../utils/userUtil";
+import { useAuth } from "../../hooks/useAuth";
 
 function Places(props){
-    // const jwt = getCookie('jwt');
-    // console.log(jwt)
-    console.log(document.cookie)
+    const {jwt} = useAuth();
+    
+    
+    useEffect(()=>{
+        console.log("Places JWT:", jwt);
+    }, [jwt])
     // fetchSavedPlaces();
-
+    
     return(
         <div></div>
     )

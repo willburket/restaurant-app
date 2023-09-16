@@ -5,7 +5,7 @@ module.exports.handler = async (event) => {
     const requestBody = JSON.parse(event.body);
     try{
         const jwt = await user.checkUser(requestBody);      // make this return jwt 
-        // console.log("JWT:",jwt)
+
         if(jwt === undefined){     
             return{
                 statusCode: 401

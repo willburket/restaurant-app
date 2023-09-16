@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function LogIn(){
     return(
-        <a href = "login" className="text-white bg-purple-700 border-l rounded p-2 h-10">
+        <Link to = "login" className="text-white bg-purple-700 border-l rounded p-2 h-10">
             Sign In
-        </a>
+        </Link>
     )
 }
 

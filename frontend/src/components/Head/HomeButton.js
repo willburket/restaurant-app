@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function HomeButton (){
 
     return(
-        <a href = "/" className="text-white bg-purple-700 border-l rounded p-2 h-10">
+        <Link to = "/" className="text-white bg-purple-700 border-l rounded p-2 h-10">
             Home
-        </a>
+        </Link>
     )
 }
 
