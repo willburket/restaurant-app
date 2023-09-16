@@ -1,7 +1,10 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 function SignUpForm(){
+    const {login} = useAuth();
+
     const [formData,setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -22,14 +25,13 @@ function SignUpForm(){
         try{
             const response = await fetch('http://localhost:3000/signup',{      // change on deployment & commits
                 method: 'POST', 
-                header: {
+                headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(formData),
             })
-            const res = await response.json();
-            console.log(res)
-            // store jwt in cookies 
+            const jwt = await response.json();
+            login(jwt);
             setSubmitted(true)
 
         }catch(error){

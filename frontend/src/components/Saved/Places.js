@@ -5,11 +5,15 @@ import { useAuth } from "../../hooks/useAuth";
 function Places(props){
     const {jwt} = useAuth();
     
+    if (jwt === null){
+        return(
+            <div>
+                Please Sign In
+            </div>
+        )
+    }
     
-    useEffect(()=>{
-        console.log("Places JWT:", jwt);
-    }, [jwt])
-    // fetchSavedPlaces();
+    fetchSavedPlaces(jwt);
     
     return(
         <div></div>
