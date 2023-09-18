@@ -4,6 +4,9 @@ import { useAuth } from "../../hooks/useAuth";
 
 function Places(props){
     const {jwt} = useAuth();
+    // fetch places id's from backend
+    // fetch place details from google 
+    // infinite scroll? 
     
     if (jwt === null){
         return(

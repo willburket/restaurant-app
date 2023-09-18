@@ -35,4 +35,6 @@ functions:
     events:
       - httpApi:
           path: /saved
-          method: get
+          method: 
+            - get
+            - post 

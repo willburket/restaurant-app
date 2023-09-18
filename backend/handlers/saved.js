@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 module.exports.handler = async (event) => {
-
     try{
         const token = event.headers['authorization'].slice(8,-1);
 
@@ -21,7 +20,13 @@ module.exports.handler = async (event) => {
             } else{
                 const userId = decoded.userId;
                 console.log(userId);
-                // take userId and query saved items dB for restaraunts 
+                if (event.httpMethod === 'GET') {
+                    // get database items 
+                    // return 200 & items in body
+                } else if (event.httpMethod === 'POST') {
+                    // post to database 
+                    // return 200 
+                }   
             }
         })
         

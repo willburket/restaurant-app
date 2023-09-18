@@ -5,6 +5,11 @@ function Map (props){
     const location = props.location;
     const restaurant = props.restaurant;
 
+    const mapStyle = {
+        width: 'calc(2/3 * 100vw)',
+        height: 'calc(100vh - 128px)',
+      };
+
     useEffect(() => {
         if(location && restaurant !== undefined && restaurant !== "no results"){
             const lat = location.lat
@@ -15,12 +20,12 @@ function Map (props){
         }
     }, [restaurant])
 
-    
-    return(
-        <div className="h-96 w-96" id= "map">
-        </div>
-        
-    )
+    if(restaurant){
+        return(
+            // <div className="h-96 w-96" id= "map"/>
+            <div id= "map" style={mapStyle}/>
+        )
+    }
     
 }
 

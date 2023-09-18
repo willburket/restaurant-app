@@ -90,4 +90,23 @@ export const initMap = (lat,lon,restaurant) => {
    
 }
 
+export const fetchPlaceDetails = async (id) => {
+    const request = {
+        placeId: id,
+        // fields: ['formatted_address','formatted_phone_number', 'opening_hours','photos[]', 'reviews','website']
+    }
 
+    try{
+        // const service = new window.google.maps.places.PlacesService(document.getElementById("map"));
+        const service = new window.google.maps.places.PlacesService(document.createElement('div'));
+        service.getDetails(request, callback);
+        function callback(place, status){
+            if(status == window.google.maps.places.PlacesServiceStatus.OK){
+                console.log(place)
+                return place
+            }
+        }
+    }catch(error){
+        console.log(error)
+    }
+}

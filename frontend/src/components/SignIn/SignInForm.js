@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SignInForm(){
     const {login} = useAuth();
+    const navigate = useNavigate();
 
     const [formData,setFormData] = useState({
         email: "",
         password: "",
     });
-    const [submitted,setSubmitted] = useState(false)
 
     const handleInputChange = (e) =>{
         const { name, value } = e.target;
@@ -32,7 +32,9 @@ function SignInForm(){
             login(jwt);
          
             if(response.ok){
-                setSubmitted(true)          // change view when we've created an account 
+                // change view when we've created an account 
+                navigate('/');
+
 
             }else{
                 console.log(response)
