@@ -32,10 +32,11 @@ export const fetchPlaces = async (food,price,lat,lon,distance) => {
 }
 
 export const loadGoogle = () =>{
+    const url = process.env.REACT_APP_API_URL;
     if(window.google){
         return;
     }
-    fetch('http://localhost:3000/key')      // change this when deploying & change back when committing 
+    fetch(`${url}/key`)      // change this when deploying & change back when committing 
   .then(response => response.json())
   .then(data => {
     const apiKey = data.message.apiKey;

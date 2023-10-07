@@ -1,9 +1,11 @@
 import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 
 function SignUpForm(){
+    const url = process.env.API_URL;
     const {login} = useAuth();
+    const navigate = useNavigate();
 
     const [formData,setFormData] = useState({
         firstName: "",
@@ -23,7 +25,7 @@ function SignUpForm(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            const response = await fetch('http://localhost:3000/signup',{      // change on deployment & commits
+            const response = await fetch(`${url}/signup`,{      // change on deployment & commits
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json',
@@ -32,6 +34,7 @@ function SignUpForm(){
             })
             const jwt = await response.json();
             login(jwt);
+            navigate('/');
             setSubmitted(true)
 
         }catch(error){

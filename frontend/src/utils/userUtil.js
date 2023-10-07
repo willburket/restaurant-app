@@ -1,7 +1,10 @@
+const url = process.env.REACT_APP_API_URL; 
+
 export const fetchSavedPlaces = async (token) => { 
+
     const jwt = JSON.stringify(token);
     try{
-        const response = await fetch('http://localhost:3000/saved',{      // change on deployment & commits
+        const response = await fetch(`${url}/saved`,{      // change on deployment & commits
             method: 'GET', 
             headers: {
                 'Content-Type': 'application/json',
@@ -20,7 +23,7 @@ export const savePlace = async (token,place) => {
     const placeId = JSON.stringify(place);
     const jwt = JSON.stringify(token);
     try{
-        const response = await fetch('http://localhost:3000/saved',{      // change on deployment & commits
+        const response = await fetch(`${url}/saved`,{      // change on deployment & commits
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json',

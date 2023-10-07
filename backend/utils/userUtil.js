@@ -54,7 +54,19 @@ exports.checkUser = async (user) =>{
         return token   
            
     }catch(error){
-        console.log('Error checking user:',error)
+        console.log('Error checking user:', error)
+    }
+}
+
+exports.savePlace = async (user,place) => {
+    try{
+        const savedPlace= {
+            user_id: user,
+            place_id: place,
+        }
+        await knex(process.env.RESTAURANTS_TABLE).insert(savedPlace)        //fix this 
+    }catch(error){
+        console.log('Error saving restaurant', error);
     }
 }
 

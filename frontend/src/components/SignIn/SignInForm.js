@@ -3,6 +3,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 
 function SignInForm(){
+    const url = process.env.REACT_APP_API_URL;
     const {login} = useAuth();
     const navigate = useNavigate();
 
@@ -21,7 +22,7 @@ function SignInForm(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            const response = await fetch('http://localhost:3000/auth',{      // change on deployment & commits
+            const response = await fetch(`${url}/auth`,{      // change on deployment & commits
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json',

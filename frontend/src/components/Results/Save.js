@@ -3,14 +3,34 @@ import { useAuth } from "../../hooks/useAuth";
 
 function SaveButton(props){
     const {jwt} = useAuth();
+    const place = props.item;
     const [saved, setSaved] = useState(false);
+    const url = process.env.REACT_APP_API_URL;
+    // const [place, setPlace] = useState()
 
-    const saveItem = () =>{
+    const saveItem = async () =>{
+
         if(!jwt){
-            alert("Please sign in to save this restaraunt") // when we go to sign it restaraunt is lost 
+            alert("Please sign in to save this restaraunt") // when we go to sign in restaraunt is lost 
         }else{
-            setSaved(true)
-            // save to database
+            const req_body = {
+                jwt: jwt,
+                place: place.place_id,
+            }
+            try{
+                const response = await fetch(`${url}/saved`,{      // change on deployment & commits
+                    method: 'POST', 
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(req_body),
+                });
+                setSaved(true)
+                
+            }catch(error){
+                console.log("Error saving restaurant", error);
+            }
+            
         }
 
     }

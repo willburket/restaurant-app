@@ -4,7 +4,11 @@ require('dotenv').config();
 
 module.exports.handler = async (event) => {
     try{
-        const token = event.headers['authorization'].slice(8,-1);
+        const method = event.requestContext.http.method;
+        const requestBody = JSON.parse(event.body);
+
+        const token = requestBody.jwt;
+        const place = requestBody.place;
 
         if(token === undefined){     
             return{
@@ -19,11 +23,13 @@ module.exports.handler = async (event) => {
                 }
             } else{
                 const userId = decoded.userId;
-                console.log(userId);
-                if (event.httpMethod === 'GET') {
+                console.log('User', userId);
+                if (method === 'GET') {
                     // get database items 
                     // return 200 & items in body
-                } else if (event.httpMethod === 'POST') {
+                } else if (method === 'POST') {
+                    console.log("place id", place);
+                    user.savePlace(userId,place);
                     // post to database 
                     // return 200 
                 }   
