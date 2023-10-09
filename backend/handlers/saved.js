@@ -5,10 +5,8 @@ require('dotenv').config();
 module.exports.handler = async (event) => {
     try{
         const method = event.requestContext.http.method;
-        const requestBody = JSON.parse(event.body);
-
-        const token = requestBody.jwt;
-        const place = requestBody.place;
+        const token = event.headers['authorization'].slice(8,-1);
+        let userId = null;
 
         if(token === undefined){     
             return{
@@ -21,29 +19,46 @@ module.exports.handler = async (event) => {
                 return{
                     statusCode: 401
                 }
-            } else{
-                const userId = decoded.userId;
-                console.log('User', userId);
-                if (method === 'GET') {
-                    // get database items 
-                    // return 200 & items in body
-                } else if (method === 'POST') {
-                    console.log("place id", place);
-                    user.savePlace(userId,place);
-                    // post to database 
-                    // return 200 
-                }   
-            }
+            } 
+            userId = decoded.userId;
         })
-        
-        return {
-            statusCode: 200,
-            headers:{
-                'Access-Control-Allow-Origin': 'http://localhost:3001',     // change later
-                'Access-Control-Allow-Credentials': true,
-                'Content-Type': 'application/json',
-            },
+           
+        console.log('User', userId);
+        if (method === 'GET') {
+            const place_ids = []
+            
+            const places = await user.fetchPlaceIds(userId)
+            
+            places.forEach(element => {
+                place_ids.push(element.place_id) 
+            });
+
+            const details = await user.fetchDetailArray(place_ids)
+            console.log(details)
+            return {
+                statusCode: 200,
+                headers:{
+                    'Access-Control-Allow-Origin': 'http://localhost:3001',     // change later
+                    'Access-Control-Allow-Credentials': true,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(details),
+            }
+           
+        } else if (method === 'POST') {
+            const place = event.body; 
+            user.savePlace(userId,place);
+            return {
+                statusCode: 200,
+                headers:{
+                    'Access-Control-Allow-Origin': 'http://localhost:3001',     // change later
+                    'Access-Control-Allow-Credentials': true,
+                    'Content-Type': 'application/json',
+                },
+            }   
         }
+        
+        
         
     } catch(error){
         console.log(error)

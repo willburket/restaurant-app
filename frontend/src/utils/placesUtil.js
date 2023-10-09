@@ -36,10 +36,10 @@ export const loadGoogle = () =>{
     if(window.google){
         return;
     }
-    fetch(`${url}/key`)      // change this when deploying & change back when committing 
+    fetch(`${url}/key`)      
   .then(response => response.json())
   .then(data => {
-    const apiKey = data.message.apiKey;
+    const apiKey = data.message.apiKey;         
     const script = document.createElement('script');
     script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=Function.prototype`;
     document.head.appendChild(script);

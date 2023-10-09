@@ -19,21 +19,3 @@ export const fetchSavedPlaces = async (token) => {
     }
 }
 
-export const savePlace = async (token,place) => {
-    const placeId = JSON.stringify(place);
-    const jwt = JSON.stringify(token);
-    try{
-        const response = await fetch(`${url}/saved`,{      // change on deployment & commits
-            method: 'POST', 
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${jwt}`,
-            },
-            body: placeId,
-        });
-        const res = await response.json()       // may not be necessary 
-
-    }catch(error){
-        console.log(error)
-    }
-}

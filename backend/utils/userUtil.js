@@ -1,6 +1,10 @@
 require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+// const axios = require('axios').create({
+//     baseUrl: 'https://maps.googleapis.com'
+// });
+const axios = require('axios');
 
 const knex = require("knex")({
     client: 'mysql',
@@ -51,6 +55,7 @@ exports.checkUser = async (user) =>{
         const payload = { userId: res[0].id, username: res[0].email };
         const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '1h' });
         // knex destroy?
+        // knex.destroy(); 
         return token   
            
     }catch(error){
@@ -60,13 +65,51 @@ exports.checkUser = async (user) =>{
 
 exports.savePlace = async (user,place) => {
     try{
-        const savedPlace= {
+        const savedPlace = {
             user_id: user,
             place_id: place,
         }
         await knex(process.env.RESTAURANTS_TABLE).insert(savedPlace)        //fix this 
     }catch(error){
-        console.log('Error saving restaurant', error);
+        console.log('Error saving restaurant:', error);
     }
 }
 
+exports.fetchPlaceIds = async (user) => {
+    // add like a number of places?
+    try{
+        const places = await knex(process.env.RESTAURANTS_TABLE)
+        .select('place_id').where('user_id',user)
+        return places
+    } catch(error){
+        console.log('Error fetching users saved Restaurants:', error);
+    }
+}
+
+const fetchPlaceDetails = async (place) => {
+    try{
+
+        const details = await axios.get(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${place}&key=${process.env.API_KEY_DEV}`);
+        // console.log(details.data.result);
+        return details.data.result
+    } catch(error){
+        console.log('Error fetching place details', error);
+    }
+    
+}
+
+exports.fetchDetailArray = async (places) => {
+    try{
+        const detail_array = []
+        // const details = places.map((place) => fetchPlaceDetails(place));
+        for (place of places){
+            const details = await fetchPlaceDetails(place)
+            detail_array.push(details)
+        }
+        // console.log(detail_array)
+        return detail_array;
+    } catch(error){
+        console.log('Error fetching detail array', error)
+    }
+    
+}

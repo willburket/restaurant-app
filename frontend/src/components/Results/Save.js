@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
+
 
 function SaveButton(props){
     const {jwt} = useAuth();
@@ -8,22 +9,24 @@ function SaveButton(props){
     const url = process.env.REACT_APP_API_URL;
     // const [place, setPlace] = useState()
 
+    useEffect(()=>{
+        setSaved(false);
+    }, [place])
+
     const saveItem = async () =>{
 
         if(!jwt){
             alert("Please sign in to save this restaraunt") // when we go to sign in restaraunt is lost 
         }else{
-            const req_body = {
-                jwt: jwt,
-                place: place.place_id,
-            }
             try{
+                const token = JSON.stringify(jwt);
                 const response = await fetch(`${url}/saved`,{      // change on deployment & commits
                     method: 'POST', 
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
                     },
-                    body: JSON.stringify(req_body),
+                    body: JSON.stringify(place.place_id),
                 });
                 setSaved(true)
                 
