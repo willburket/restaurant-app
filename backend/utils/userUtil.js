@@ -1,9 +1,7 @@
 require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-// const axios = require('axios').create({
-//     baseUrl: 'https://maps.googleapis.com'
-// });
+
 const axios = require('axios');
 
 const knex = require("knex")({

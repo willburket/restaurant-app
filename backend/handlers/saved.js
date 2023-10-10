@@ -26,15 +26,14 @@ module.exports.handler = async (event) => {
         console.log('User', userId);
         if (method === 'GET') {
             const place_ids = []
-            
-            const places = await user.fetchPlaceIds(userId)
+            const places = await user.fetchPlaceIds(userId)         // need to paginate
             
             places.forEach(element => {
                 place_ids.push(element.place_id) 
             });
 
-            const details = await user.fetchDetailArray(place_ids)
-            console.log(details)
+            const details = await user.fetchDetailArray(place_ids)      
+        
             return {
                 statusCode: 200,
                 headers:{
@@ -57,9 +56,7 @@ module.exports.handler = async (event) => {
                 },
             }   
         }
-        
-        
-        
+
     } catch(error){
         console.log(error)
         return{
