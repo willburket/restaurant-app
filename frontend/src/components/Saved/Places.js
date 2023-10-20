@@ -12,8 +12,7 @@ function Places({handleCallback}){
         .then((places) => setSavedPlaces(places));
     }, [])
 
-    useEffect(() => {
-        
+    useEffect(() => {        
         handleCallback(place)
     }, [place])
 
@@ -33,7 +32,7 @@ function Places({handleCallback}){
         return(
             <div className = "w-1/4 border-r-2 h-[calc(100vh-128px)]">
                 {savedPlaces.map((item, index) => (
-                <button className = "w-full text-purple-900 bg-white rounded p-2 h-10 border-b-2 overflow-hidden" 
+                <button className = "w-full text-purple-900 bg-white rounded p-2 h-10 border-b-2 truncate" 
                 key={index} onClick={() => selectPlace(item)}>{item.name}</button>
                 ))}
             </div>

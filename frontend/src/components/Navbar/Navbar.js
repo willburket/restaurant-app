@@ -44,13 +44,13 @@ function Navbar({handleCallback, locateChange}) {
             if (sessionStorage.length === 0 || storedValue === null){
                 const places = await fetchPlaces(food,price,lat,lon,distance);
                 console.log(places)
-                if(places !== "no results"){
+                if(places !== "no results"){            // use undefined instead?
                     storeInCache(identifier,places)
                     const item = getFromCache(identifier)
                     setResult(item) 
                 }
                 else{
-                    setResult("no results")
+                    setResult("no results")         // use undefined?
                 }    
                               
             } 
@@ -79,8 +79,9 @@ function Navbar({handleCallback, locateChange}) {
         setFood(data)
     }
 
+    // bg-zinc-600
     return(
-        <div className="bg-zinc-600 h-16 w-full top-16 p-2 flex">
+        <div className="bg-indigo-600 h-16 w-full top-16 p-2 flex">
             <SearchBar handleCallback = {searchCallback}/>
             <LocationDropdown handleCallback = {locationCallback}/>
             <DistanceDropdown handleCallback = {distanceCallback}/>

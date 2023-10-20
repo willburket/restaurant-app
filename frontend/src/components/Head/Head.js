@@ -7,9 +7,10 @@ import AccountButton from "./AccountButton";
 function Head() {
 
     // account button only shows when signed in?
+    // bg-zinc-600
 
     return(
-        <div className="bg-zinc-600 h-16 w-full p-3 flex">
+        <div className="bg-indigo-600 h-16 w-full p-3 flex">
             <Logo/>
             <h1 className="text-5xl font-serif text-white px-3">Food Finder</h1>
             <div className="flex items-center ml-auto">

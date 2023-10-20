@@ -8,20 +8,23 @@ export const fetchPlaces = async (food,price,lat,lon,distance) => {
         const minPrice = price;
         const maxPrice = price;
 
-        const request = {
+        const request = {           
             location: location,
             radius: radius,
             type: type,
             keyword: keyword,
             minPriceLevel: minPrice,
             maxPriceLevel: maxPrice,
-        };
+        };  
+        // cache place id's?
+        // get full place details using id?
+
         service.nearbySearch(request, (results, status) => {
             if (status === window.google.maps.places.PlacesServiceStatus.OK) {
                 resolve(results);
             }
             else if (status === window.google.maps.places.PlacesServiceStatus.ZERO_RESULTS){
-                resolve("no results");
+                resolve("no results");          // change this to undef or null
             }
             else {
                 reject(status)

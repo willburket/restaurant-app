@@ -9,7 +9,6 @@ function Details(props){
         if(place && place !== "no more results" && place !== "no results"){
             const placeId = place.place_id;
             fetchPlaceDetails(placeId).then(result => {
-            // console.log(result.formatted_address)
             setDetails(result)
             // set loading? 
         });
